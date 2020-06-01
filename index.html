@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODO List</title>
+  <link rel="stylesheet" href="./assets/styles/styles.css">
+  <link rel="icon" href="./assets/images/smile.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./assets/images/smile.png" type="image/x-icon">
+</head>
+
+<body>
+  <div id="app">
+    <div class="wrapper">
+      <h1 class="title">Заметочки</h1>
+      <div class="notes">
+        <button v-on:click="addNote" class="notes__add-btn btn" title="Добавить заметку">
+          <img src='./assets/images/icon-add.svg' alt='icon' class='notes__icon'>
+        </button>
+        <div v-if="!mutableNote" class="notes">
+          <note
+            v-for="note in notes"
+            :key="note.id"
+            :note="note"
+            v-on:edit-note="editNote"
+            v-on:delete-note="deleteNote"
+          ></note>
+        </div>
+        <mutable-note
+          v-else
+          :note="mutableNote"
+          v-on:save-data="saveData"
+          v-on:reset-edit="resetEdit"
+          v-on:delete-note="deleteNote"
+        ></mutable-note>
+      </div>
+    </div>
+  </div>
+  <script src="./assets/scripts/vue.js"></script>
+  <script src="./assets/scripts/index.vue"></script>
+</body>
+
+</html>
